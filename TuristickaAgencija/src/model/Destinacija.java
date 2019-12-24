@@ -2,8 +2,16 @@ package model;
 
 import java.util.Date;
 
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
+
+@Entity
 public class Destinacija {
 	
+	@Id
+	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Integer idDestinacija;
 	private String drzava;
 	private String mesto;
@@ -11,6 +19,7 @@ public class Destinacija {
 	private Double cenaSmestaja;
 	private Integer brojNocenja;
 	private Date datumPolaska;
+	private Double popust;
 	
 	public Integer getIdDestinacija() {
 		return idDestinacija;
@@ -53,6 +62,12 @@ public class Destinacija {
 	}
 	public void setDatumPolaska(Date datumPolaska) {
 		this.datumPolaska = datumPolaska;
+	}
+	public Double getPopust() {
+		return popust;
+	}
+	public void setPopust(Double popust) {
+		this.popust = popust;
 	}
 	
 	

@@ -29,6 +29,12 @@
 		<property name="hbm2ddl.auto">create</property>
 		
 		<!-- Names the annotated entity class -->
+		
+		<mapping class="model.User"/>
+		<mapping class="model.Transport"/>
+		<mapping class="model.Destinacija"/>
+		<mapping class="model.Racun"/>
+		<mapping class="model.Transakcije"/>
 
 
 	</session-factory>

@@ -7,6 +7,8 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import service.RegistracioniService;
+
 /**
  * Servlet implementation class RegistracioniServlet
  */
@@ -54,6 +56,27 @@ public class RegistracioniServlet extends HttpServlet {
 		System.out.println("Dobrodaosao u dopost " + userName);
 		System.out.println("Tvoj pass je: " + password);
 		System.out.println("Ponovio si:  " + repeatedPassword);
+		
+		// povezujem se sa servisom
+		RegistracioniService service = new RegistracioniService();
+		
+		//proveravamo passworde
+		boolean proveraPassworda = service.daLiSuIstiPasswordi(password, repeatedPassword);
+		
+		if(proveraPassworda) {
+			
+			//idi na index stranu
+			response.sendRedirect("index.html");
+			
+		}else {
+			//idi na refistracionu formu ponovo
+			response.sendRedirect("htmlFajlovi/registracija.html");
+		}
+		
+		
+		
+		
+		
 	}
 
 }
