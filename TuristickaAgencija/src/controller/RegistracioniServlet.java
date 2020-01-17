@@ -7,6 +7,7 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import model.User;
 import service.RegistracioniService;
 
 /**
@@ -63,10 +64,20 @@ public class RegistracioniServlet extends HttpServlet {
 		//proveravamo passworde
 		boolean proveraPassworda = service.daLiSuIstiPasswordi(password, repeatedPassword);
 		
+		//vraca mi popunjenog usera (to mi je model)
+		User user = service.vratiUserModel(userName,password);
+		
 		if(proveraPassworda) {
+			//upisujem usera u bazu
+			boolean daLiJeUpisaoUseraUbazu = service.upisiUseraUbazu(user);
 			
-			//idi na index stranu
-			response.sendRedirect("index.html");
+			if(daLiJeUpisaoUseraUbazu) {
+				//idi na uspesno si se registrovao!!!
+				response.sendRedirect("htmlFajlovi/uspesnaRegistracija.html");
+			}else {
+				//idi na refistracionu formu ponovo
+				response.sendRedirect("htmlFajlovi/registracija.html");
+			}
 			
 		}else {
 			//idi na refistracionu formu ponovo
