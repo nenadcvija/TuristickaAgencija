@@ -16,23 +16,54 @@ public class LoginDAO {
 
 	
 	public User vratiUseraLogIn(String userName, String password) {
-		User user = new User();
-		Session sesija = factory.getCurrentSession();
-		Query query = sesija.createQuery("FROM User WHERE userName = :x AND password = :y");
-				query.setParameter("x", userName);
-				query.setParameter("y", password);
-			
-			List<User> useri = query.getResultList();
-			
-			if(useri.isEmpty()) {
+	
+		Session sesija = factory.openSession();
+		sesija.beginTransaction();
+	
+			try {
+				Query query = sesija.createQuery("FROM User WHERE userName = :x AND password = :y");
+					query.setParameter("x", userName);
+					query.setParameter("y", password);	
+				
+					List<User> useri = query.getResultList();
+				
+				if(useri.isEmpty()) {
+					sesija.getTransaction().rollback();
+					return null;
+				}else if(useri.size() == 1) {
+					sesija.getTransaction().commit();
+					return useri.get(0);
+				}else {
+					sesija.getTransaction().rollback();
+					return null;
+				}
+			} catch (Exception e) {
+				sesija.getTransaction().rollback();
 				return null;
-			}else if(useri.size() == 1) {
-				return useri.get(0);
-			}else {
-				return null;
-			}
-		
+			}finally {
+				sesija.close();
+			}	
 	}
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
 	
 	
 
