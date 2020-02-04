@@ -52,7 +52,7 @@
 		<tr>
 			<th>BROJ</th>
 			<th>NESTO</th>
-		</tr>
+		</tr> 
 		
 		<%	for(int i = 0; i<=zbir;i++){ %>
 			<tr>
@@ -61,6 +61,15 @@
 			</tr>
 		<%} %>	
 	</table>
+	
+	<a href = "../SviUseriServlet"> 
+		<img src="../slike/globus.jpg">
+	</a>
+	
+	
+	
+	
+	
 	
 	
 	
