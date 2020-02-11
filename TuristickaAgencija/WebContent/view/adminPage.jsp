@@ -73,6 +73,10 @@
 	<a href = "dodajDestinaciju.jsp"> 
 		<button >DODAJ DESTINACIJU</button>
 	</a>
+	
+		<a href = "../ListaDestinacijaServlet"> 
+		<button >DODAJ TRANSPORT</button>
+	</a>
 	</div>
 	
 	

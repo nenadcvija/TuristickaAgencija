@@ -28,6 +28,10 @@
 		<!-- Drop and re-create the database schema on startup -->
 		<property name="hbm2ddl.auto">update</property>
 		
+		<property name="hibernate.current_session_context_class">
+          thread
+		</property>
+		
 		<!-- Names the annotated entity class -->
 		
 		<mapping class="model.User"/>
