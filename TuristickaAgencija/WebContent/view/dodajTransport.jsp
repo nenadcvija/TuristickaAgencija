@@ -21,6 +21,7 @@
 		List<Destinacija> lista = (List<Destinacija>)request.getAttribute("listaDestinacija");
 	%>
 	
+	<!-- ovo je forma za dodavanje transporta -->
 	<form>
 		<select>
 			<% for( Destinacija d: lista){ %>
