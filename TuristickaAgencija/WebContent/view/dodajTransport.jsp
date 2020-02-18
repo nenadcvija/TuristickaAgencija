@@ -19,13 +19,15 @@
 	
 	<% 
 		List<Destinacija> lista = (List<Destinacija>)request.getAttribute("listaDestinacija");
+	
 	%>
 	
 	<!-- ovo je forma za dodavanje transporta -->
-	<form>
-		<select>
+	<form action = "DodajTransportServlet" method="get">
+		IZABERI DESTINACIJU:
+		<select name="destinacija" >
 			<% for( Destinacija d: lista){ %>
-			<option>
+			<option value="<%=d.getIdDestinacija()%>">
 				<%=d.getDrzava() %> / <%=d.getMesto() %>
 			</option>
 			<%} %>
@@ -36,9 +38,14 @@
 			AVIO
 			<input type="radio" name="radioDugme" value="avio"> <br><br>
 			BUS
-			<input type="radio" name="radioDugme" value="autobus">
+			<input type="radio" name="radioDugme" value="autobus"><br><br>
+			VOZ
+			<input type="radio" name="radioDugme" value="voz"><br><br>
 		</label>
-	
+		
+		CENA: <input type="text" name="cena" > <br><br>
+		POPUST: <input type="text" name="popust" > <br><br>
+		<input type="submit" value="UPISI" > 
 	
 	</form>
 	
