@@ -1,6 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=ISO-8859-1"
     pageEncoding="ISO-8859-1"%>
 <%@ page import="model.User"%>
+<%@ taglib prefix = "c" uri = "http://java.sun.com/jsp/jstl/core" %>
 <!DOCTYPE html>
 <html>
 <head>
@@ -17,11 +18,9 @@
 		LOGO
 	</div>
 
-	<%
-		User user = (User)session.getAttribute("userIzBaze");
-	%>
+	<jsp:useBean id="user" scope="session" class="model.User" ></jsp:useBean>
 
-	<h1> Hellooo   <%=user.getUserName() %></h1>
+	<h1> Hellooo   ${user.userName} </h1>
 	
 	
 	<%
@@ -30,8 +29,11 @@
 	    int zbir = x+y;
 	
 	%>
+	<c:set var="x" value="6"/>
+	<c:set var="y" value="7"/>
+	<c:set var="zbir" value= "${x+y}"  />
 	
-	<p>Moj omiljeni zbir brojeva je: <%=zbir %></p> 
+	<p>Moj omiljeni zbir brojeva je:${zbir }</p> 
 	
 	<% 
 		if(zbir<5){
@@ -54,12 +56,13 @@
 			<th>NESTO</th>
 		</tr> 
 		
-		<%	for(int i = 0; i<=zbir;i++){ %>
+		<c:forEach  var ="i" begin="0" end="${zbir}" >
 			<tr>
-				<td><%=i %></td>
-				<td><%=zbir-i %></td>
+				<td>${i}</td>
+				<td>${zbir-i }</td>
 			</tr>
-		<%} %>	
+		</c:forEach>
+
 	</table>
 	<div >
 	<a href = "../SviUseriServlet"> 

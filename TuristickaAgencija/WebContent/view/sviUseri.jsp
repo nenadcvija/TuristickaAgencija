@@ -3,6 +3,7 @@
  <%@ page import="model.User" %>
  <%@ page import="java.util.List" %>
  <%@ page import="java.util.ArrayList" %>
+ <%@ taglib prefix = "c" uri = "http://java.sun.com/jsp/jstl/core" %>
 <!DOCTYPE html>
 <html>
 <head>
@@ -27,6 +28,11 @@
 		
 		%>
 		
+		<jsp:useBean id="useriIzBaze" scope="session" class="java.util.ArrayList"  ></jsp:useBean>
+		
+		<c:set var="useri" value="${useriIzBaze}"/>
+		
+		
 		<h1> TABELA SVIH USERA </h1>
 		
 			<table border="1">
@@ -36,21 +42,24 @@
 					<th>PASSWORD</th>
 					<th>BALANCE</th>
 					<th>ROLA</th>
+					<th>ADD BALANCE</th>		
 				</tr> 
-		
-		<%	for(User u: useri){ %>
+		<c:forEach var ="u" items="${useri}">
 			<tr>
-				<td><%=u.getIdUser() %></td>
-				<td><%=u.getUserName()%></td>
-				<td><%=u.getPassword() %></td>
-				<td><%=u.getBalance() %></td>
-				<td><%=u.getRola() %></td>
+				<td>${u.idUser}</td>
+				<td>${u.userName}</td>
+				<td>${u.password}</td>
+				<td>${u.balance}</td>
+				<td>${u.rola}</td>
+				<td>
+						<c:url var = "link" value = "/view/dodajBalance.jsp"   > 
+								<c:param  name = "index" value = "${u.idUser}"/>
+					    </c:url>
+						<a href = "${link}" > dodaj </a> 	  
+				</td>
 			</tr>
-		<%} %>	
+		</c:forEach>
 	</table>
-		
-		
-		
 		
 		
 		
