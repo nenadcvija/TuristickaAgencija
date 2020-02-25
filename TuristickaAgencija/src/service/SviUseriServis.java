@@ -13,6 +13,10 @@ public class SviUseriServis {
 		
 		return dao.vratiSveUsere();
 	}
+
+	public boolean dodajBalance(Integer idUser, Double addBalance) {
+		return dao.dodajBalance(idUser,addBalance);
+	}
 	
 	
 	

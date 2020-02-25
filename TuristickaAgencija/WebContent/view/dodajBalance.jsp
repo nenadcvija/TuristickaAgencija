@@ -10,10 +10,11 @@
 <body>
 	<h1>DODAJ BALANCE</h1>
 
-
-
-	<form>
+	<c:set var="idUser" value="${param.index }"/>
+Index: ${idUser }
+	<form action="../DodajBalanceServlet">
 	
+						<input type="hidden" name = "id" value="${idUser }">
 	Upisi iznos: <input type="text" name = "add">
 						 <input type="submit" value="DODAJ">
 	</form>
