@@ -11,7 +11,7 @@
 <title>dodaj destinaciju</title>
 	<link rel = "stylesheet"
 			 type = "text/css"
-			href ="../css/style.css"
+			href ="css/style.css"
 	/>
 </head>
 <body>
@@ -22,9 +22,7 @@
 	
 	
 <!-- 	preuzmi listu iz request objecta -->
-<jsp:useBean id="destinacije" scope="request"  class = "java.util.ArrayList<model.Destinacija>" type="java.util.List<model.Destinacija>"></jsp:useBean>
-
-<c:set var = "listaDestinacija" value="${destinacije}"/>
+<jsp:useBean id="destinacije" scope="request"   type="java.util.List<model.Destinacija>"></jsp:useBean>
 
 <table border="1">
 	<tr>
@@ -33,14 +31,21 @@
 		<th>SMESTAJ</th>
 		<th>POPUST</th>
 		<th>CENA</th>	
+		<th>ODABERI</th>	
 	</tr>
-	<c:forEach var="d" items="listaDestinacija">
+	<c:forEach var="d" items="${destinacije}">
 	<tr>
 		<td>${d.drzava}</td>
 		<td>${d.mesto}</td>
 		<td>${d.smestaj}</td>
 		<td>${d.popust}</td>
 		<td>${d.cenaSmestaja}</td>
+		<td>
+				<c:url var = "link" value = "/view/izaberiOstalo.jsp"   > 
+						<c:param  name = "id" value = "${d.idDestinacija}"/>
+				 </c:url>
+					<a href = "${link}" > izaberi </a> 	  
+		</td>
 	</tr>
 	</c:forEach>
 
