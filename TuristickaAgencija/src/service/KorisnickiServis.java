@@ -6,10 +6,12 @@ import dao.KorisnickiDAO;
 import model.Destinacija;
 import model.TipTransporta;
 import model.Transport;
+import razno.Common;
 
 public class KorisnickiServis {
 	
 	KorisnickiDAO dao = new KorisnickiDAO();
+	Common common = new Common();
 
 	
 	public List<Destinacija> dajSveDestinacije() {
@@ -22,8 +24,14 @@ public class KorisnickiServis {
 	}
 
 
-	public Transport vratiTransport(Destinacija destinacija, TipTransporta tip) {
-		return dao.vratiTransport(destinacija,tip);
+	public List<Transport> vratiTransport() {
+		return dao.vratiTransport();
+	}
+
+
+	public Double izracunajCenuAranzmana(Double cenaSmestaja, Double popustSmestaj, Double cenaTransporta,
+			Double popustZaTransport, String brojOsoba) {
+		return common.izracunajCenuAranzmana(cenaSmestaja, popustSmestaj, cenaTransporta,popustZaTransport,brojOsoba);
 	}
 	
 	

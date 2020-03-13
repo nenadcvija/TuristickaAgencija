@@ -54,22 +54,19 @@ public class KorisnickiDAO {
 		}
 	}
 
-	public Transport vratiTransport(Destinacija destinacija, TipTransporta tip) {
+	public List<Transport> vratiTransport() {
 		
-		Transport transport = new Transport();
+		List<Transport> transporti = new ArrayList<Transport>();
 		Session session = factory.getCurrentSession();
 		session.beginTransaction();
 		try {
-		
-			final String sql = "FROM Transport WHERE destinacija = :destinacija AND tipTransporta = :tip";
-			 
-			Query query = session.createQuery(sql);
-			query.setParameter("idDestinacija", destinacija);
-			 query.setParameter("tipPrevoza", tip);
 			
-			transport = (Transport)query.getSingleResult();
+			final String sql = "FROM Transport";	
+			Query query = session.createQuery(sql);
+			transporti = query.getResultList();
+			
 			session.getTransaction().commit();
-			return transport;
+			return transporti;
 		} catch (Exception e) {
 			session.getTransaction().rollback();
 			return null;

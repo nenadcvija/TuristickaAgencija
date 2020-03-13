@@ -42,4 +42,10 @@ public class Common {
 		} 
 	}
 
+	public Double izracunajCenuAranzmana(Double cenaSmestaja, Double popustSmestaj, Double cenaTransporta,
+			Double popustZaTransport, String brojOsoba) {
+		
+		return (cenaSmestaja * (100-popustSmestaj)/100 + cenaTransporta * (100-popustZaTransport)/100)*Integer.parseInt(brojOsoba);
+	}
+
 }
